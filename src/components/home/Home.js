@@ -46,7 +46,7 @@ export default class Home extends Component {
     };
   }
 
-  onChange(id, value) {
+  onChange = (id, value) => {
     const copyModulos = [...this.state.modulos];
     var current = copyModulos.find((current) => current.modulo === id);
     current.value = parseInt(value, 10);
@@ -60,7 +60,7 @@ export default class Home extends Component {
     var index = copyModulos.indexOf(current);
     copyModulos[index] = current;
     this.setState({ modulos: copyModulos });
-  }
+  };
 
   render() {
     const { modulos } = this.state;
@@ -91,10 +91,7 @@ export default class Home extends Component {
                 Notas atuais
               </h1>
             </div>
-            <Grades
-              modulos={this.state.modulos}
-              onChange={this.onChange.bind(this)}
-            />
+            <Grades modulos={this.state.modulos} onChange={this.onChange} />
           </div>
           <div className="column">
             <Calculation

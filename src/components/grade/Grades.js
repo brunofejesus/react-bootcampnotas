@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 export default class Grades extends Component {
-  onGradesChange(id, value) {
+  onGradesChange = (id, value) => {
     this.props.onChange(id, value);
-  }
+  };
 
   render() {
     const { modulos } = this.props;

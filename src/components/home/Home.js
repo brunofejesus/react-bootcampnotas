@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Calculation from '../calculations/Calculation';
+import Calculos from '../calculations/Calculo';
 import Grades from '../grade/Grades';
 
 const classIsPrimary = `input is-primary has-text-primary`;
@@ -47,8 +47,8 @@ export default class Home extends Component {
   }
 
   onChange = (id, value) => {
-    const copyModulos = [...this.state.modulos];
-    var current = copyModulos.find((current) => current.modulo === id);
+    const modulos = [...this.state.modulos];
+    const current = modulos.find((current) => current.modulo === id);
     current.value = parseInt(value, 10);
     if (!isNaN(current.value)) {
       if (current.value >= 60) {
@@ -57,9 +57,7 @@ export default class Home extends Component {
         current.classInput = classIsDanger;
       }
     }
-    var index = copyModulos.indexOf(current);
-    copyModulos[index] = current;
-    this.setState({ modulos: copyModulos });
+    this.setState({ modulos });
   };
 
   render() {
@@ -74,6 +72,7 @@ export default class Home extends Component {
     const aprovaMedia = modulos.every((current) => current.value >= 60)
       ? 'Sim'
       : 'Não';
+
     const aprovaPercentualTotal =
       parseInt(percentutalTotal) >= 70 ? 'Sim' : 'Não';
 
@@ -94,7 +93,7 @@ export default class Home extends Component {
             <Grades modulos={this.state.modulos} onChange={this.onChange} />
           </div>
           <div className="column">
-            <Calculation
+            <Calculos
               totalNotas={somaTotal}
               percentualTotal={percentutalTotal}
               aprovMedia={aprovaMedia}
